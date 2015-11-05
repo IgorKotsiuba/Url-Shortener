@@ -1,31 +1,44 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
 
-  # GET /links
-  # GET /links.json
   def index
-    @links = Link.all
+    if user_signed_in?
+      @links = current_user.links
+    else
+      @links = Link.all
+    end
   end
 
-  # GET /links/1
-  # GET /links/1.json
   def show
   end
 
-  # GET /links/new
-  def new
-    @link = Link.new
+  def display_url
+    if params[:short]
+      @link = Link.find_by(short: params[:short])
+      if @link.present?
+        if @link.clicks == 0
+          redirect_to @link.original
+          @link.clicks += 1
+          @link.save
+        else
+          render :text => 'Current link is not active anymore', :status => '404'
+        end
+      else
+        redirect_to root_path
+      end
+    end
   end
 
-  # GET /links/1/edit
+  def new
+    @link = current_user.links.build
+  end
+
   def edit
   end
 
-  # POST /links
-  # POST /links.json
   def create
-    @link = Link.new(link_params)
-
+    @link = current_user.links.build(link_params)
     respond_to do |format|
       if @link.save
         format.html { redirect_to @link, notice: 'Link was successfully created.' }
@@ -37,8 +50,7 @@ class LinksController < ApplicationController
     end
   end
 
-  # PATCH/PUT /links/1
-  # PATCH/PUT /links/1.json
+
   def update
     respond_to do |format|
       if @link.update(link_params)
@@ -51,8 +63,7 @@ class LinksController < ApplicationController
     end
   end
 
-  # DELETE /links/1
-  # DELETE /links/1.json
+
   def destroy
     @link.destroy
     respond_to do |format|
@@ -62,13 +73,11 @@ class LinksController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_link
       @link = Link.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def link_params
-      params.require(:link).permit(:original, :short, :clicks, :user_id)
+      params.require(:link).permit(:original)
     end
 end

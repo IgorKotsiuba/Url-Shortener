@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Original:</strong>
   <%= @link.original %>
@@ -7,18 +5,13 @@
 
 <p>
   <strong>Short:</strong>
-  <%= @link.short %>
+  <%= @link.display_slug %>
 </p>
 
 <p>
   <strong>Clicks:</strong>
   <%= @link.clicks %>
 </p>
+<%= link_to @link.display_slug, @link.display_slug, target: '_blank' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @link.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_link_path(@link) %> |
 <%= link_to 'Back', links_path %>
