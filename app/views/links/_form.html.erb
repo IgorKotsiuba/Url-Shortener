@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :original %><br>
-    <%= f.url_field :original %>
+    <%= f.label :original_link %><br>
+    <%= f.text_field :original, :placeholder => "Paste a link to shorten", class: "form-control" %>
   </div>
 
   <div class="actions">

@@ -1,6 +1,9 @@
 class Link < ActiveRecord::Base
+  REGEX = '^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}'
+
   belongs_to :user
   validates_presence_of :original
+  validates_format_of :original, with: /REGEX/, message: "URL should have valid format"
 
   after_create :generate_slug
 
