@@ -1,13 +1,9 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!
 
   def index
-    if user_signed_in?
-      @links = current_user.links
-    else
-      @links = Link.all
-    end
+    @links = current_user.links
   end
 
   def show
