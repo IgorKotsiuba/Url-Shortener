@@ -3,7 +3,7 @@ class Link < ActiveRecord::Base
 
   belongs_to :user
   validates_presence_of :original
-  validates_format_of :original, with: /REGEX/, message: "URL should have valid format"
+  validates_format_of :original, with: /\A(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}\z/, message: "URL should have valid format"
 
   after_create :generate_slug
 
