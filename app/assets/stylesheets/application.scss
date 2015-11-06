@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.thumbnail{
+  background-image: url(/assets/dolar.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+.plan{
+  color: blue;
+  text-align: center;
+}
+
+.painment_info{
+  color: blue;
+  text-align: center;
+}
+
+h1{
+  text-align: center;
+}
