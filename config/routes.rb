@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   end
   root 'home#index'
   get 'paypal/checkout', to: 'subscriptions#paypal_checkout'
+  resources :subscriptions
+  resources :plans
 end

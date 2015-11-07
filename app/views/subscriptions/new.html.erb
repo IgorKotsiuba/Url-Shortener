@@ -1,0 +1,33 @@
+<h1>Signing up for "<%= @subscription.plan.name %>"</h1>
+<p>Includes for only <strong><%= number_to_currency @subscription.plan.price %></strong> per month!</p>
+
+<%= form_for @subscription do |f| %>
+  <% if @subscription.errors.any? %>
+    <div class="error_messages">
+      <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+      <ul>
+      <% @subscription.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :plan_id %>
+  <%= f.hidden_field :paypal_customer_token %>
+  <%= f.hidden_field :paypal_payment_token %>
+
+  <div id="billing_fields">
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <% if @subscription.paypal_payment_token.present? %>
+      Payment has been provided. Click "Subscribe" to complete the subscription.
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Subscribe" %>
+    </div>
+  </div>
+<% end %>
