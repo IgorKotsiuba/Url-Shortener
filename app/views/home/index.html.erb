@@ -9,9 +9,13 @@
         <div class="thumbnail">
           <div class="caption">
             <h3 class="plan"><%= plan.name %></h3>
-            <p class="painment_info">each submission costs <%=number_to_currency plan.price %> </p>
+            <p class="payment_info">each submission costs <%=number_to_currency plan.price %> </p>
             <div id="paypal_checkout">
-              <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_checkout_path(plan_id: plan.id) %>
+              <% if user_signed_in? %>
+                <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), paypal_checkout_path(plan_id: plan.id) %>
+              <% else %>
+                </p>You should login or sign up to proceed<p>
+              <% end %>
             </div>
           </div>
         </div>

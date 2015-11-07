@@ -6,8 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 Plan.create!([
-  { name: "Up To 10 Shorten URL Links For One Day", price: 0.10 },
-  { name: "More Than 10 Shorten URL Links For One Day", price: 0.05 }
+  { name: "Up To 10 Shorten URL Links Per Day", price: 0.10 },
+  { name: "More Than 10 Shorten URL Links Per Day", price: 0.05 }
 ])
 
 User.create!([

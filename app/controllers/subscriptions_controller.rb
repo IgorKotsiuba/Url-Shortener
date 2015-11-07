@@ -7,13 +7,15 @@ class SubscriptionsController < ApplicationController
       @subscription.paypal_customer_token = params[:PayerID]
       @subscription.paypal_payment_token = params[:token]
       @subscription.email = @subscription.paypal.checkout_details.email
+      @subscription.user_id = current_user.id
     end
   end
 
   def create
     @subscription = Subscription.new(subscription_params)
+    @subscription.user_id = current_user.id
     if @subscription.save_with_payment
-      redirect_to root_url, :notice => "Thank you for subscribing!"
+      redirect_to links_path, :notice => "Thank you for subscribing! No you can short you links"
     else
       render :new
     end
