@@ -16,12 +16,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/*.thumbnail{
-  //background-image: url(/assets/dolar.jpg);
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  width: 100%;
-}*/
+.thumbnail{
+  background: ghostwhite;
+}
 
 .plan{
   color: blue;
@@ -48,5 +45,26 @@ h1{
 }
 
 #count{
-  width: 200px;
+  width: 148px;
+  margin-left: 19px;
+}
+
+#paypal_button{
+  margin-left: 78px;
+}
+
+#plan_name{
+  margin-left: 63px;
+}
+
+#plan_list{
+  margin-top: 63px;
+}
+
+#subscription_email{
+  width: 260px;
+}
+
+#new_shorten_url{
+  margin-left: 92px;
 }

@@ -42,7 +42,12 @@ class LinksController < ApplicationController
       if @link.save
         @subscription.link_count -= 1
         @subscription.save
-        flash[:notice] = 'Link was successfully created.'
+        if @subscription.link_count == 0
+          flash[:notice] = 'Link was successfully created.'
+        else
+          flash[:notice] = 'Link was successfully created. You are out of plan.
+                            In order to proceed, please make new payment.'
+        end
         format.html { redirect_to links_path}
       else
         format.html { render :new }

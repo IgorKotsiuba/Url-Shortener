@@ -1,27 +1,18 @@
 <%= form_for(@plan) do |f| %>
-  <% if @plan.errors.any? %>
-    <div class="alert alert-danger">
-      <h2><%= pluralize(@plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
-
-      <ul>
-      <% @plan.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
   <div class="field">
+    <%= f.label :Plan_name  %>
+    <em id="plan_name"><%= @plan.name %></em>
+  </div>
+  <div class="field">
+    <%= f.label :Please_select_quantity_of_links  %>
     <%= select_tag(:count, options_for_select(@plan.min_numb_links..@plan.max_numb_links)) %>
   </div>
 
   <div class="actions">
-    <div class="btn-group">
-      <button type="button", class: "btn btn-default">
-        <%= link_to 'Back', root_url%>
-      </button>
-      <%= f.submit "" , type: :image, src: "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif" %>
-    </div>
+      <%= f.label :Click_here_to_proceed  %>
+      <%= f.submit "" , type: :image, src: "https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif", id: "paypal_button" %>
   </div>
-
+  <div>
+    <%= link_to 'Back', root_path, class: "btn btn-default" %>
+  </div>
 <% end %>

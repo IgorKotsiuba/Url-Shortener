@@ -1,9 +1,8 @@
 <div class="jumbotron">
   <h1>UNLEASH THE POWER OF THE LINK </h1>
   <p> Welcome to our website! It’s a big a pleasure to see you. Choose the plan which is more suitable for you.</p>
-  <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-info" %>
 
-  <div class="row">
+  <div class="row" id="plan_list">
     <% @plans.each do |plan| %>
       <div class="col-sm-6 col-md-6">
         <div class="thumbnail">
@@ -14,7 +13,7 @@
               <% if user_signed_in? %>
                 <%= link_to "Submit Order", edit_plan_path(plan), class: "btn btn-warning" %>
               <% else %>
-                </p>You should login or sign up to proceed<p>
+                <%= link_to "Sign Up", new_user_registration_path, class: "btn btn-info" %>
               <% end %>
             </div>
           </div>
