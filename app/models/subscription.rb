@@ -19,6 +19,10 @@ class Subscription < ActiveRecord::Base
     save!
   end
 
+  def total_price
+    self.plan.price * self.link_count
+  end
+
   def paypal
     PaypalPayment.new(self)
   end

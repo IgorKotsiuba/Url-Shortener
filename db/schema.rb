@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151106192904) do
+ActiveRecord::Schema.define(version: 20151107214035) do
 
   create_table "links", force: :cascade do |t|
     t.string   "original"
@@ -25,8 +25,10 @@ ActiveRecord::Schema.define(version: 20151106192904) do
   create_table "plans", force: :cascade do |t|
     t.string   "name"
     t.decimal  "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "min_numb_links"
+    t.integer  "max_numb_links"
   end
 
   create_table "subscriptions", force: :cascade do |t|
@@ -37,6 +39,7 @@ ActiveRecord::Schema.define(version: 20151106192904) do
     t.string   "paypal_recurring_profile_token"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.integer  "link_count"
   end
 
   create_table "users", force: :cascade do |t|

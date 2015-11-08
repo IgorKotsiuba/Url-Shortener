@@ -1,14 +1,11 @@
 class LinksController < ApplicationController
-  before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :set_link, only: [:destroy]
   before_action :authenticate_user!
 
   def index
     @links = Link.where(user_id: current_user.id)
                  .order('created_at DESC')
                  .paginate(page: params[:page], per_page: 10)
-  end
-
-  def show
   end
 
   def display_url
@@ -29,16 +26,24 @@ class LinksController < ApplicationController
   end
 
   def new
-    @link = current_user.links.build
+    if current_user.subscriptions.last.link_count == 0
+      flash[:alert] = 'Sorry, you have used all available links for this plan!!!
+                        In order to proceed, please make new payment.'
+      redirect_to links_path
+    else
+      @link = current_user.links.build
+    end
   end
 
   def create
     @link = current_user.links.build(link_params)
+    @subscription = current_user.subscriptions.last
     respond_to do |format|
       if @link.save
-        flash[:success] = 'Link was successfully created.'
-        format.html { redirect_to @link}
-        format.json { render :show, status: :created, location: @link }
+        @subscription.link_count -= 1
+        @subscription.save
+        flash[:notice] = 'Link was successfully created.'
+        format.html { redirect_to links_path}
       else
         format.html { render :new }
         format.json { render json: @link.errors, status: :unprocessable_entity }

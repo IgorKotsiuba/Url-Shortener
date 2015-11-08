@@ -12,11 +12,13 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :original_link %><br>
+    <%= f.label :original_link %>
     <%= f.text_field :original, :placeholder => "Paste a link to shorten it", class: "form-control" %>
   </div>
 
   <div class="actions">
+    <%= link_to 'Back', links_path, class: "btn btn-default" %>
     <%= f.submit "Shorten", class: "btn btn-primary" %>
   </div>
+
 <% end %>

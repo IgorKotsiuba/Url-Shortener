@@ -23,7 +23,7 @@ class PaypalPayment
         token: @subscription.paypal_payment_token,
         payer_id: @subscription.paypal_customer_token,
         description: @subscription.plan.name,
-        amount: @subscription.plan.price,
+        amount: @subscription.total_price,
         currency: "USD"
       )
       response = PayPal::Recurring.new(options).send(action)

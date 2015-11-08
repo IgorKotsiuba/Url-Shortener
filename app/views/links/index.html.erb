@@ -1,12 +1,17 @@
+<% unless current_user.subscriptions.last.link_count == 0 %>
+  <%= link_to 'Shorten New Link', new_link_path, class: "btn btn-warning" %>
+<% end %>
+
 <h1>Listing Links</h1>
 <div class='panel panel-default'>
   <table class='table'>
     <thead>
       <tr>
         <th>Original URL</th>
-        <th>Shorten URL</th>
-        <th>Clicks</th>
+        <th class="text-center">Shorten URL</th>
+        <th class="text-center">Status</th>
         <th>Time</th>
+        <th>Action</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -15,8 +20,14 @@
       <% @links.each do |link| %>
         <tr>
           <td><%= link_to truncate(link.original, length: 60), link.original, target: '_blank' %></td>
-          <td><%= link_to link.display_slug, link.display_slug, target: '_blank' %></td>
-          <td><%= link.clicks %></td>
+          <td class="text-center"><%= link_to link.display_slug, link.display_slug, target: '_blank' %></td>
+          <td class="text-center">
+            <% if link.clicks == 0 %>
+              Available
+            <% else %>
+              Not Available
+            <% end %>
+          </td>
           <td><%= time_ago_in_words(link.created_at) %> ago</td>
           <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
