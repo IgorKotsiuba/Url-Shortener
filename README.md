@@ -22,9 +22,14 @@ Email: kotsiuba-buyer@test.com
 Password: kotsiuba-buyer
 
 ### Installation
+#### Ruby Version:
+ruby 2.2.1
 #### Clone project to your local repository
 ```sh
 $ git clone https://github.com/IgorKotsiuba/Url-Shortener.git
+$ cp Url-Shortener/.ruby-gemset.tt Url-Shortener/.ruby-gemset
+$ cp Url-Shortener/.ruby-version.tt Url-Shortener/.ruby-version
+$ cd Url-Shortener
 ```
 #### To install the dependencies specified in Gemfile
 ```sh
