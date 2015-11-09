@@ -14,3 +14,11 @@ User.create!([
   { email: "user1@example.com", password: '00000000', password_confirmation: '00000000' },
   { email: "user2@example.com", password: '00000000', password_confirmation: '00000000' }
 ])
+
+Link.create!([
+  {original:"https://github.com/" , short: "1", clicks: 0, user_id: 1},
+  {original:"http://guides.rubyonrails.org/", short: "2", clicks: 0, user_id: 1},
+  {original:"http://n-ix.com/", short: "3", clicks: 0, user_id: 1},
+  {original:"https://www.google.com.ua/", short: "4", clicks: 1, user_id: 1},
+  {original:"https://www.ukr.net/", short: "5", clicks: 0, user_id: 1}
+])

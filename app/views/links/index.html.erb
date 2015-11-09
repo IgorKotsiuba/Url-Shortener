@@ -1,4 +1,4 @@
-<% unless current_user.subscriptions.last.link_count == 0 %>
+<% unless current_user.subscriptions.empty? || current_user.subscriptions.last.link_count == 0 %>
   <%= link_to 'Shorten New Link', new_link_path, class: "btn btn-warning" %>
 <% end %>
 
