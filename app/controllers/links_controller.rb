@@ -17,7 +17,7 @@ class LinksController < ApplicationController
           @link.clicks += 1
           @link.save
         else
-          render :text => 'Current link is not active anymore', :status => '404'
+          return render 'links/404.html', status: 404
         end
       else
         redirect_to root_path
